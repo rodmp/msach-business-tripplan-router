@@ -1,8 +1,9 @@
 package com.meep.tripplan.router.service;
 
-import java.util.List;
 import com.meep.tripplan.router.model.Resource;
 import com.meep.tripplan.router.model.TripplanResourceDiffResponse;
+
+import java.util.List;
 
 /**
  * Clase que manipulara las lista en cache.

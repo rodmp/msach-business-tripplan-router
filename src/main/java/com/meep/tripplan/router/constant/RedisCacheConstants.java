@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 public class RedisCacheConstants {
 
   /**
-   * 
+   * Valor de la llave en redis.
    */
   public static final String KEY = "resources";
   
   /**
-   * 
+   * Valor de la llave en redis.
    */
   public static final String KEY_NEW = "newResources";
 
   /**
-   * 
+   * Valor de la llave en redis.
    */
   public static final String KEY_OLD = "oldResources";
 

@@ -1,11 +1,11 @@
 package com.meep.tripplan.router.exceptions;
 
-import java.time.ZonedDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.meep.tripplan.router.constant.SpecialCharacterConstants;
 
 import lombok.Setter;
+
+import java.time.ZonedDateTime;
 
 /**
  * Clase error para respuesta del controlador.

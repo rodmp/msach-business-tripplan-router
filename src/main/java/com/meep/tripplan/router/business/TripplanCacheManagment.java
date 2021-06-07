@@ -1,15 +1,19 @@
 package com.meep.tripplan.router.business;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.meep.tripplan.router.constant.RedisCacheConstants;
+import com.meep.tripplan.router.exceptions.custom.RedisOperationException;
 import com.meep.tripplan.router.model.Resource;
 import com.meep.tripplan.router.model.TripplanResourceDiffResponse;
 import com.meep.tripplan.router.service.TripplanCacheManagmentService;
+
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Clase implementacion para manipular la cache y almacenar la informacion de los recursos nuevos y
@@ -23,13 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 public class TripplanCacheManagment implements TripplanCacheManagmentService {
 
   /**
-   * 
+   * Variable RedisRepositoryImpl.
    */
   @Autowired
   private RedisRepositoryImpl redisRepositoryImpl;
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   @Override
   public void managementCacheTripplanResource(List<Resource> resources) {
@@ -54,23 +58,25 @@ public class TripplanCacheManagment implements TripplanCacheManagmentService {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   @Override
   public TripplanResourceDiffResponse getDifferenceResorces() {
     TripplanResourceDiffResponse tripplanResourceDiffResponse = new TripplanResourceDiffResponse();
     try {
       if (redisRepositoryImpl.existsKey(RedisCacheConstants.KEY_OLD)) {
-        List<Resource> notAvailable = redisRepositoryImpl.findResources(RedisCacheConstants.KEY_OLD);
+        List<Resource> notAvailable =
+            redisRepositoryImpl.findResources(RedisCacheConstants.KEY_OLD);
         tripplanResourceDiffResponse.setNotAvailable(notAvailable);
       }
-      
-      if(redisRepositoryImpl.existsKey(RedisCacheConstants.KEY_NEW)) {
-        List<Resource> newResources = redisRepositoryImpl.findResources(RedisCacheConstants.KEY_NEW);
+
+      if (redisRepositoryImpl.existsKey(RedisCacheConstants.KEY_NEW)) {
+        List<Resource> newResources =
+            redisRepositoryImpl.findResources(RedisCacheConstants.KEY_NEW);
         tripplanResourceDiffResponse.setNewResources(newResources);
       }
-    } catch(JsonProcessingException exception) {
-      
+    } catch (JsonProcessingException exception) {
+      throw new RedisOperationException("Error la intentar una operacion en cache");
     }
     return tripplanResourceDiffResponse;
   }

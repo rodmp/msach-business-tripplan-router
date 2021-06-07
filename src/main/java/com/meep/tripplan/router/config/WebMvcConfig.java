@@ -1,12 +1,12 @@
 package com.meep.tripplan.router.config;
 
+import com.meep.tripplan.router.constant.ApiValues;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.meep.tripplan.router.constant.ApiValues;
 
 /**
  * Clase de configuración para el contexto web mvc.

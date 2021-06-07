@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Clase que contiene los valores externalizados del o las API's.
  * 
- * @author Nova Solution Systems.
- * @since 01.01.2020.
+ * @author .
  */
 @Component
 @Getter

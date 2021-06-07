@@ -2,15 +2,18 @@ package com.meep.tripplan.router.api;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
+
+import com.meep.tripplan.router.model.TripplanResourceDiffResponse;
+import com.meep.tripplan.router.service.TripplanCacheManagmentService;
+
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.meep.tripplan.router.business.TripplanCacheManagment;
-import com.meep.tripplan.router.model.TripplanResourceDiffResponse;
 
 /**
  * 
@@ -18,6 +21,7 @@ import com.meep.tripplan.router.model.TripplanResourceDiffResponse;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
 public class TripplanResourcesControllerTest {
 
   /**
@@ -30,7 +34,7 @@ public class TripplanResourcesControllerTest {
    * 
    */
   @Mock
-  private TripplanCacheManagment tripplanCacheManagmentService;
+  private TripplanCacheManagmentService tripplanCacheManagmentService;
   
   /**
    * Metodo de configuracion para las unit test.

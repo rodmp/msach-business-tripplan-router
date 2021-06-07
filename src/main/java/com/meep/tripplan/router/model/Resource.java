@@ -1,13 +1,13 @@
 package com.meep.tripplan.router.model;
 
-import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.math.BigDecimal;
 
 /**
  * Clase pojo para representar las posibles recursos en una ruta.
@@ -22,68 +22,68 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Resource {
 
-	/**
-	 * Identificador del objeto.
-	 */
-	private String id;
-	
-	/**
-	 * Codigo del recuerso.
-	 */
-	private String name;
-	
-	/**
-	 * 
-	 */
-	private BigDecimal x;
-	
-	/**
-	 * 
-	 */
-	private BigDecimal y;
-	
-	/**
-	 * 
-	 */
-	private String licencePlate;
-	
-	/**
-	 * 
-	 */
-	private Integer range;
-	
-	/**
-	 * 
-	 */
-	private Integer batteryLevel;
-	
-	/**
-	 * 
-	 */
-	private Integer helmets;
-	
-	/**
-	 * 
-	 */
-	private String model;
-	
-	/**
-	 * 
-	 */
-	private String resourceImageId;
-	
-	/**
-	 * 
-	 */
-	private Boolean realTimeData;
-	
-	/**
-	 * 
-	 */
-	private ResourceType resourceType;
-	
-	/**
-	 * 
-	 */
-	private Integer companyZoneId;
+  /**
+   * Identificador del objeto.
+   */
+  private String id;
+
+  /**
+   * Codigo del recuerso.
+   */
+  private String name;
+
+  /**
+   * Coordenada x.
+   */
+  private BigDecimal x;
+
+  /**
+   * Coordenada y.
+   */
+  private BigDecimal y;
+
+  /**
+   * Licencia.
+   */
+  private String licencePlate;
+
+  /**
+   * Rango.
+   */
+  private Integer range;
+
+  /**
+   * Nivel de bateria.
+   */
+  private Integer batteryLevel;
+
+  /**
+   * Helmets.
+   */
+  private Integer helmets;
+
+  /**
+   * Modelo.
+   */
+  private String model;
+
+  /**
+   * Identificador de imagen.
+   */
+  private String resourceImageId;
+
+  /**
+   * Tiempo real.
+   */
+  private Boolean realTimeData;
+
+  /**
+   * Tipo de recurso.
+   */
+  private ResourceType resourceType;
+
+  /**
+   * Zona id.
+   */
+  private Integer companyZoneId;
 }

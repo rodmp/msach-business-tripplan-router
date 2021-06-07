@@ -36,11 +36,19 @@ public class ApplicationConfig {
     return new RestTemplate();
   }
 
+  /**
+   * Bean para la configuracion de Redis.
+   * @return JedisConnectionFactory.
+   */
   @Bean
   JedisConnectionFactory jedisConnectionFactory() {
     return new JedisConnectionFactory();
   }
 
+  /**
+   * Configuracion de conexion de redis.
+   * @return RedisTemplate.
+   */
   @Bean
   public RedisTemplate<String, Object> redisTemplate() {
     RedisTemplate<String, Object> template = new RedisTemplate<>();

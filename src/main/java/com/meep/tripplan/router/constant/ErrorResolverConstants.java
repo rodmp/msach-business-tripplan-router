@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * clase de constantes correspondientes al ErrorResolver.
  * 
- * @author Nova Solution Systems.
- * @since 01.01.2020.
+ * @author.
  */
 @Component
 @Getter

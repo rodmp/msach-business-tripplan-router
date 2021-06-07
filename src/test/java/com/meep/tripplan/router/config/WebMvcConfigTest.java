@@ -1,5 +1,8 @@
 package com.meep.tripplan.router.config;
 
+import com.meep.tripplan.router.constant.ApiValues;
+import com.meep.tripplan.router.constant.SpecialCharacterConstants;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +16,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import com.meep.tripplan.router.constant.ApiValues;
-import com.meep.tripplan.router.constant.SpecialCharacterConstants;
 
 /**
  * Clase de prueba para WebMvcConfig class.

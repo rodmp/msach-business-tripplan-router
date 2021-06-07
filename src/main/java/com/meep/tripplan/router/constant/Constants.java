@@ -4,17 +4,22 @@ package com.meep.tripplan.router.constant;
  * Clase de constantes generales dela aplicacion.
  */
 public class Constants {
-  
+
   /**
    * Constante que contiene el valor del base path.
    */
   public static final String BASE_PATH = "${api.uri.basePath}";
 
   /**
-   * 
+   * Constante que contiene el valor del uri mapping.
    */
   public static final String GET_MAPPING_RESOURCE = "${api.uri.domain.context.mapping}";
-  
+
+  /**
+   * Constante que contiene el nombre del recurso.
+   */
+  public static final String API_RESOURCES_NAME = "tripplan-resources";
+
   /**
    * Constante que contiene la cadena OK.
    */
@@ -29,7 +34,7 @@ public class Constants {
    * Constante que representa la cadena N.
    */
   public static final String N = "N";
-  
+
   /**
    * Constante que representa la cadena Y.
    */
@@ -61,6 +66,28 @@ public class Constants {
   public static final String ERROR_MORE_INFORMATION = "moreInfo: {}";
 
   /**
+   * Constante que contiene el valor de la descripcion cuando se ejecuto un get a redis.
+   */
+  public static final String GET_REDIS_CACHE = "Informacion obtenida en cache: KEY {}, cadena {} ";
+
+  /**
+   * Constante que contiene el valor de la descripcion cuando se ejecuto un get a redis.
+   */
+  public static final String RESOURCES_REST_TEMPLATE =
+      "Recuersos devueltos del consumo del servicio {} : {}";
+
+  /**
+   * Constante que contiene el valor de la descripcion cuando se guardo en redis.
+   */
+  public static final String SAVE_REDIS_CACHE =
+      "Informacion a guardar en cache: KEY {}, cadena {} ";
+
+  /**
+   * Constante que contiene el valor de la descripcion cuando se ejecuto GET en el controlador.
+   */
+  public static final String REST_TEMPLATE_CONSUME = "Url de consumo para obtener recursos: {} ";
+
+  /**
    * Constante usada como llave para el atributo uuid header.
    */
   public static final String UUID_MDC_LABEL = "mdc.uuid";
@@ -79,6 +106,11 @@ public class Constants {
    * Constante para mostrar el inicio de la peticion.
    */
   public static final String START_REQUEST = "Inicia Llamado [{}]";
+
+  /**
+   * Constante para mostrar el inicio de la peticion.
+   */
+  public static final String END_REQUEST = "Finaliza Llamado [{}]";
 
   /**
    * Constante para mostrar el tiempo de petición y respuesta.
@@ -179,72 +211,72 @@ public class Constants {
    * Constante que representa el header Authorization.
    */
   public static final String AUTHORIZATION = "Authorization";
-  
+
   /**
    * Constante que representa el header deviceId.
    */
   public static final String DEVICE_ID = "deviceId";
-  
+
   /**
    * Constante que representa el header client_id.
    */
   public static final String CLIENT_ID = "client_id";
-  
+
   /**
    * Constante que representa el header Accept-Language.
    */
   public static final String ACCEPT_LANGUAGE = "Accept-Language";
-  
+
   /**
    * Constante que representa el header Host.
    */
   public static final String HOST = "Host";
-  
+
   /**
    * Constante que representa el header User-Agent.
    */
   public static final String USER_AGENT = "User-Agent";
-  
+
   /**
    * Constante que representa el header Content-Encoding.
    */
   public static final String CONTENT_ENCODING = "Content-Encoding";
-  
+
   /**
    * Constante que representa el header Content-Language.
    */
   public static final String CONTENT_LANGUAGE = "Content-Language";
-  
+
   /**
    * Constante que representa el header Content-Length.
    */
   public static final String CONTENT_LENGTH = "Content-Length";
-  
+
   /**
    * Constante que representa el header Content-MD5.
    */
   public static final String CONTENT_MD5 = "Content-MD5";
-  
+
   /**
    * Constante que representa el header Accept-Charset.
    */
   public static final String ACCEPT_CHARSET = "Accept-Charset";
-  
+
   /**
    * Constante que representa el header Date.
    */
   public static final String DATE = "Date";
-  
+
   /**
    * Constante que representa el header Accept-Encoding.
    */
   public static final String ACCEPT_ENCODING = "Accept-Encoding";
-  
+
   /**
    * Constante que representa el header ChannelId.
    */
   public static final String CHANNEL_ID = "channel_id";
-  
+
   /**
    * Constante utilizada para mostrar un mensaje acerca de una petición mal formada.
    */
@@ -264,7 +296,7 @@ public class Constants {
    * Constante utilizada para mostrar un mensaje acerca de un Internal server error.
    */
   public static final String INTERNAL_ERROR = "Internal server error";
-  
+
   /**
    * Constante utilizada para mostrar el status code 200.
    */

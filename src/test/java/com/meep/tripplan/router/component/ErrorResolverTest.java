@@ -1,12 +1,18 @@
 package com.meep.tripplan.router.component;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
+import com.meep.tripplan.router.constant.Constants;
+import com.meep.tripplan.router.constant.ErrorResolverConstants;
+import com.meep.tripplan.router.constant.SpecialCharacterConstants;
+import com.meep.tripplan.router.exceptions.custom.BadRequestException;
+import com.meep.tripplan.router.exceptions.custom.ForbiddenException;
+import com.meep.tripplan.router.exceptions.custom.InvalidOptionException;
+import com.meep.tripplan.router.exceptions.custom.NoDataFoundException;
+import com.meep.tripplan.router.exceptions.custom.UnauthorizedException;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
+
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
@@ -23,16 +29,12 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import com.meep.tripplan.router.constant.Constants;
-import com.meep.tripplan.router.constant.ErrorResolverConstants;
-import com.meep.tripplan.router.constant.SpecialCharacterConstants;
-import com.meep.tripplan.router.exceptions.custom.BadRequestException;
-import com.meep.tripplan.router.exceptions.custom.DownstreamException;
-import com.meep.tripplan.router.exceptions.custom.ForbiddenException;
-import com.meep.tripplan.router.exceptions.custom.InvalidOptionException;
-import com.meep.tripplan.router.exceptions.custom.NoDataFoundException;
-import com.meep.tripplan.router.exceptions.custom.UnauthorizedException;
-import com.netflix.hystrix.exception.HystrixRuntimeException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 
 /**
  * Clase que implementa las pruebas unitarias para la clase ErrorResolver.
@@ -60,7 +62,7 @@ public class ErrorResolverTest {
   /**
    * Inicia las variables de la prueba.
    */
-  @org.junit.Before
+  @Before
   public void setUp() {
 
     MockitoAnnotations.initMocks(this);
@@ -381,26 +383,6 @@ public class ErrorResolverTest {
     errorResolver.resolveUnAuthorizedException(req, exception);
 
     Assert.assertNotNull(errorResolver.resolveUnAuthorizedException(req, exception));
-
-  }
-
-  /**
-   * Test para resolver la excepcion DownstreamException.
-   * 
-   * @given una peticion HttpServletRequest y la excepcion DownstreamException.
-   * @when se recibe una excepcion DownstreamException,
-   * @then se dispara dicha excepcion DownstreamException.
-   */
-  @Test
-  public void resolveDownstreamException() {
-
-    HttpServletRequest req = Mockito.mock(HttpServletRequest.class);
-
-    DownstreamException ex = Mockito.mock(DownstreamException.class);
-
-    HttpServletResponse resp = Mockito.mock(HttpServletResponse.class);
-
-    Assert.assertNotNull(errorResolver.resolveDownstreamException(req, resp, ex));
 
   }
 

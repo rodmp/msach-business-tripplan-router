@@ -1,5 +1,7 @@
 package com.meep.tripplan.router.config;
 
+import com.meep.tripplan.router.constant.ApiValues;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import com.meep.tripplan.router.constant.ApiValues;
+
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**

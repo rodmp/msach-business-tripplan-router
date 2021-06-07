@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * 
+ * Clase principal.
  * @author .
  *
  */
@@ -16,8 +16,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class MsachBusinessTripplanRouterApplication {
 
   /**
-   * 
-   * @param args
+   * Metodo principal.
+   * @param args String[].
    */
   public static void main(String[] args) {
     SpringApplication.run(MsachBusinessTripplanRouterApplication.class);

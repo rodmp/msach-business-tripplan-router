@@ -17,14 +17,14 @@
 	
 	<properties>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR11</spring-cloud.version>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 		<jacoco.destFile>${project.basedir}/target/jacoco.exec</jacoco.destFile>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.exclusions>**/Main*</sonar.exclusions>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
-		<sonar.coverage.exclusions>**/constant/**/*,**/exceptions/**/*,**/model/**/*,**/domain/**/*,**/repository/**/*,**/Main*</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>**/constant/**/*,**/exceptions/**/*,**/model/**/*,**/domain/**/*,**/repository/**/*,**/Msach*</sonar.coverage.exclusions>
 	</properties>
 	
 	<dependencies>
@@ -139,6 +139,15 @@
 						</configuration>
 					</plugin>
 					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+						<version>3.1.1</version>
+						<configuration>
+							<effort>Max</effort>
+							<threshold>Low</threshold>
+						</configuration>
+					</plugin>
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
 						<version>3.0.0</version>
@@ -168,11 +177,10 @@
 						<version>0.8.1</version>
 						<configuration>
 							<excludes>
-								<exclude>**/constant/**/*</exclude>
-								<exclude>**/exceptions/**/*</exclude>
-								<exclude>**/model/**/*</exclude>
-								<exclude>**/domain/**/*</exclude>
-								<exclude>**/Main*</exclude>
+								<exclude>*/constant//</exclude>
+								<exclude>*/exceptions//</exclude>
+								<exclude>*/model//</exclude>
+								<exclude>*/domain//</exclude>
 							</excludes>
 						</configuration>
 						<reportSets>
@@ -192,6 +200,10 @@
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -220,11 +232,10 @@
 				<version>0.8.1</version>
 				<configuration>
 					<excludes>
-						<exclude>**/constant/**/*</exclude>
-						<exclude>**/exceptions/**/*</exclude>
-						<exclude>**/model/**/*</exclude>
-						<exclude>**/domain/**/*</exclude>
-						<exclude>**/Main*</exclude>
+						<exclude>*/constant//</exclude>
+						<exclude>*/exceptions//</exclude>
+						<exclude>*/model//</exclude>
+						<exclude>*/domain//</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -277,5 +288,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

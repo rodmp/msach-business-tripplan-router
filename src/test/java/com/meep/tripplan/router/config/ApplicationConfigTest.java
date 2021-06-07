@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -44,6 +43,39 @@ public class ApplicationConfigTest {
   public void methodValidationPostProcessor() {
 
     Assert.assertNotNull(applicationConfig.methodValidationPostProcessor());
+
+  }
+  
+  /**
+   * Ejecuta la prueba unitaria para el metodo restTemplate.
+   * 
+   */
+  @Test
+  public void restTemplateTest() {
+
+    Assert.assertNotNull(applicationConfig.restTemplate());
+
+  }
+  
+  /**
+   * Ejecuta la prueba unitaria para el metodo jedisConnectionFactory.
+   * 
+   */
+  @Test
+  public void jedisConnectionFactoryTest() {
+
+    Assert.assertNotNull(applicationConfig.jedisConnectionFactory());
+
+  }
+  
+  /**
+   * Ejecuta la prueba unitaria para el metodo jedisConnectionFactory.
+   * 
+   */
+  @Test
+  public void redisTemplateTest() {
+
+    Assert.assertNotNull(applicationConfig.redisTemplate());
 
   }
 

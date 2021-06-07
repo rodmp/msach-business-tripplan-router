@@ -1,4 +1,5 @@
 msach-business-tripplan-router.
+
 Este microservicio tiene 1 APIs que obtiene los recursos nuevos y recursos que no estan disponibles:
 
 1.Hace el consumo de los recursos disponibles en un are por medio del siguiente endpoint:
@@ -26,7 +27,7 @@ En el body del request se debe de incluir el json resultado del analisis que rea
 
 URL :
 
-http://localhost:8080/api/public/v1/tripplan/resources/difference/resources/retrieve
+http://localhost:8080/swagger-ui.html#!/tripplan-resources-controller/getDifferencesResourcesUsingGET
 
 ```
 
@@ -47,7 +48,6 @@ http://localhost:8080/api/public/v1/tripplan/resources/difference/resources/retr
 
 Se necesita tener instalado:
 		
-- Contar con VPN de coppel 
  - Java 1.8  		
  - Maven 		
  - Spring Tools Suite
@@ -93,3 +93,23 @@ Sonar es una plataforma de código abierto utilizada por los equipos de desarrol
 mvn clean package site sonar:sonar -Pdevelopment_reporting
 
 En las últimas líneas de la salida de consola hay un enlace, cópielo y péguelo en cualquier navegador web para ver el informe.
+
+-**Preguntas**
+
+- ¿Cómo de escalable es tu solución propuesta? 
+
+	Se puede instalar en un docker, y configurar para kubernetes. Aumentar el número de contenedores o pods.
+
+- ¿Que problemas a futuro podría presentar? Si has detectado alguno 
+
+	1.- Puede haber problemas de concurrencia, tiempo de procesamiento si la lista de recursos es muy grande o si existen problema con algunas operaciones con la cache.
+   
+	2.- Cuando cambien de entradas para obtener diferentes coordenadas se borrara lo que quizas se utilice en otro usuario.
+
+- ¿Qué alternativa/s propones para solventar dichos problemas?
+
+	Se puede manejar concurrencia para evitar dead locks
+
+	Manejar un mayor tiempo en ir a obtener los recursos.
+
+	Manejo de la informacion desde el cliente y no desde un backend.

@@ -1,16 +1,18 @@
 package com.meep.tripplan.router.component;
 
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import com.meep.tripplan.router.constant.Constants;
+import com.meep.tripplan.router.constant.ErrorResolverConstants;
+import com.meep.tripplan.router.constant.SpecialCharacterConstants;
+import com.meep.tripplan.router.exceptions.ErrorResponse;
+import com.meep.tripplan.router.exceptions.ErrorType;
+import com.meep.tripplan.router.exceptions.custom.BadRequestException;
+import com.meep.tripplan.router.exceptions.custom.ForbiddenException;
+import com.meep.tripplan.router.exceptions.custom.InvalidOptionException;
+import com.meep.tripplan.router.exceptions.custom.NoDataFoundException;
+import com.meep.tripplan.router.exceptions.custom.UnauthorizedException;
+import com.netflix.hystrix.exception.HystrixRuntimeException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,25 +24,20 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.meep.tripplan.router.constant.Constants;
-import com.meep.tripplan.router.constant.ErrorResolverConstants;
-import com.meep.tripplan.router.constant.SpecialCharacterConstants;
-import com.meep.tripplan.router.exceptions.ErrorResponse;
-import com.meep.tripplan.router.exceptions.ErrorType;
-import com.meep.tripplan.router.exceptions.custom.BadRequestException;
-import com.meep.tripplan.router.exceptions.custom.DownstreamException;
-import com.meep.tripplan.router.exceptions.custom.ForbiddenException;
-import com.meep.tripplan.router.exceptions.custom.InvalidOptionException;
-import com.meep.tripplan.router.exceptions.custom.NoDataFoundException;
-import com.meep.tripplan.router.exceptions.custom.UnauthorizedException;
-import com.netflix.hystrix.exception.HystrixRuntimeException;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 
 /**
  * Clase que intercepta las excepciones y maneja los mensajes y codigos http correspondientes.
@@ -72,37 +69,6 @@ public class ErrorResolver {
         Objects.isNull(exception) ? SpecialCharacterConstants.EMPTY_STRING : exception.getMessage();
 
     log.error(message, exception);
-
-  }
-
-  /**
-   * Metodo para manejar una excepcion de tipo DownstreamException.
-   *
-   * @param req Objeto Http Servlet de petición.
-   * @param resp Objeto Http Servlet de respuesta.
-   * @param ex Excepción recibida DownstreamException.
-   * @return ErrorResponse Objeto de respuesta específica para DownstreamException.
-   */
-  @ExceptionHandler(DownstreamException.class)
-  @ResponseBody
-  public ErrorResponse resolveDownstreamException(HttpServletRequest req, HttpServletResponse resp,
-      DownstreamException ex) {
-
-    ErrorResponse errorResponse = new ErrorResponse();
-
-    errorResponse.setType(ex.getType());
-    errorResponse.setCode(ex.getCode());
-    errorResponse.setDetails(ex.getDetails());
-    errorResponse.setLocation(ex.getLocation());
-    errorResponse.setMoreInfo(ex.getMoreInfo());
-    errorResponse.setUuid(ex.getUuid());
-    errorResponse.setTimestamp(ex.getTimestamp());
-
-    resp.setStatus(ex.getStatus());
-
-    ErrorResolver.writeToLog(errorResponse, ex);
-
-    return errorResponse;
 
   }
 
@@ -469,7 +435,7 @@ public class ErrorResolver {
 
   }
 
- /**
+  /**
    * Metodo para manejar una excepcion de tipo {@link ForbiddenException}.
    *
    * @param req Objeto Http Servlet de petición.
@@ -519,7 +485,7 @@ public class ErrorResolver {
     return errorResponse;
 
   }
-  
+
   /**
    * Handler para manejar la excepcion {@link NoDataFoundException}.
    *
