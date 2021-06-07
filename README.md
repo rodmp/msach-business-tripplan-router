@@ -28,50 +28,15 @@ URL :
 
 http://localhost:8080/api/public/v1/tripplan/resources/difference/resources/retrieve
 
-> Test data : 
-``` json
-{
-    "customer": {
-        "id": "Tndsihg7gtlPiFERapsL/Or/JmRqvCkIZawrWzUU13PnECt1xdVLUnpEncTdQ1WGwNLp/q+mfbuyyYMUE0r46u4re1+BNfLwz6ZjRIXzqXTJes/OW3wbLiEFfQ/yZmB1vHlGifn8xYrL6fkMqi3VO7cOTRR4gHele1VuapUANvtBnuxpANvQVBkz13g6KC+eC9xCofBy6bk1KSUASunNWUlR3/9qtXhXyp5vhYofl7MN8j8UeNrqwLpZGlD1jMuJgRSmaCiy8yv/cDysdaDqKIkdi0Vcvp3wCJABWfY4DriPrRm12FCAy26Ka0PsQF1oPBfv6X2UYhzVYG+3Xu0CeQ==",
-        "cellphone": "UQVhpXvXDPXoufw+s/K1MACs9c1FaVtP5FR6CsIt5T/r0EdkC5SLNK4vxFyAyLdafiaZzakHkEgifqb56vPnRkHLKB+h4LYr7Pj6VmPqjZ3d9zAXRZYc0rPZUtjg2VvtqPunOE1Dbjcq/TAkENpW0EZEWAPcyg+EaxsTYHTtrgan2ZTGJEVNs++AdO8a4G+4X2vi+w81OrXgB+ReregEAGLJotDaHPaZA0CvIXaaGh9Leeu6dvL/pZbBVp22R9XjlxLfZ81NC+SF5DQGpXcvc2QtYJRXdrCn9z8xc7rluFC1E18xPKZ2NtyF1PWaSECc+qS8wSAq/ssPZsivXUQ8sw==",
-        "birthDate": "GeeCkL8XxmXpjR03Tbql2hMiIGqSRzkZMk9v3R187sjs3Z/xoJMV+Tc4I7g8+tlUwTtoD5JzuXu7m291WmyU3JpY0FAaXTvOki8HZapq+boQJmKfQSeNGT9rrhXFTEnooneAUnxOx1CQxO1q9VX0M3fjRhHbfFD4Fz4b5KLsUj9Z0o3nAQaGXbO+PZQvsW0DnWBQh+s7spBBvorrklYdd26Fi4VvweMmWsqgcb85LRCD1hW7l3Oj5rlxygzTzxMka6I4PS8C/aTQFi/rfRHWnPGuzOzFsUIpxWPFOnjREGPTPiovf2OPVGoSrhRTsRgYGEIhgTj8CVxwsA+g/JGsyQ=="
-    },
-    "termStatus": {
-        "acept": true,
-        "version": "1.0"
-    }
-}
-
 ```
 
- - El servicio es invocable desde el paquete  **com.bancoppel.customer.phone.enrollment** en el metodo:
+ - El servicio es invocable desde el paquete  **com.meep.tripplan.router.api** en el metodo:
 ```java
-  public CustomerDataResponse customerDataResponse(CustomeRequest customeRequest,
-      HeadersModel header) {
+  public ResponseEntity<TripplanResourceDiffResponse> getDifferencesResources(){
+    
   }
 
 ```
-> /api/public/v1/channel/authentication/phone/enrollment/confirm POST
-
-Recibe una contraseña, confirmacion de la misma.
-
-URL : 
-http://localhost:8080/api/public/v1/channel/authentication/phone/enrollment/confirm POST
-- Objeto json encriptado
-```json
-{
-    "password": "SF/9/SNfeWqculUpiMauPcvKMJruKwx7qECpt/e61Dh1f49MrdMkxTRDRQgOnwwpWNFX0FOWA/Y283eBp9pWy/0EqdToS1KSkXDXl7VAs67hn0lgsZZ0/54jluHrlhfC+SIxrL2FjzThaEvIw0CsFkMfo7ixzoOKIGiRJeHtgW4B9WCUwZRk381CiEiR/jfNDFNUaPmg+I+ykEhe5dal6uoGgn3SmI+zqXOfHVDZj9I4KoQI9zKebcLpkiQ5g90mI745694otz4zromEPnMuAgNZPKZ8Xej+JF7Rs2UumZBHV8lpvESDLDjphjENWavG3vUNViDLQNqvb9thwfASiQ==",
-    "passwordConfirm": "SF/9/SNfeWqculUpiMauPcvKMJruKwx7qECpt/e61Dh1f49MrdMkxTRDRQgOnwwpWNFX0FOWA/Y283eBp9pWy/0EqdToS1KSkXDXl7VAs67hn0lgsZZ0/54jluHrlhfC+SIxrL2FjzThaEvIw0CsFkMfo7ixzoOKIGiRJeHtgW4B9WCUwZRk381CiEiR/jfNDFNUaPmg+I+ykEhe5dal6uoGgn3SmI+zqXOfHVDZj9I4KoQI9zKebcLpkiQ5g90mI745694otz4zromEPnMuAgNZPKZ8Xej+JF7Rs2UumZBHV8lpvESDLDjphjENWavG3vUNViDLQNqvb9thwfASiQ=="
-}
-```
- - La clase que realiza el cambio de password se encuentra en el paquete: **com.bancoppel.customer.phone.enrollment** en el metodo:
-```java
-  public SessionOpen createCustomerConfirm(PasswordBexRequest passwordRequest,
-      HeadersModel headers) {
-	  }	  
-```
-
-
 * Maven
 * Spring
 * SpringBoot
@@ -91,7 +56,6 @@ Se necesita tener instalado:
 
 
     mvn spring boot:run  en Local 
-	mvn fabric8:deploy   Openshift 
 O desde Spring Tools Suite click derecho sobre el proyecto -> Run As -> Spring Boot App
 
 
