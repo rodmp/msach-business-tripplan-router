@@ -121,7 +121,7 @@ data:
     
     spring.cache.type=redis
     spring.cache.redis.time-to-live= 300000000
-    spring.redis.host=localhost
+    spring.redis.host=redis.image.svc
     spring.redis.port=6379
     
     #===================================================================#
