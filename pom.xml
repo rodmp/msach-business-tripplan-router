@@ -14,11 +14,13 @@
 	<version>1.0.0</version>
 	<name>msach-business-tripplan-router</name>
 	<description>Demo project for Spring Boot</description>
-	
+
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 		<jacoco.destFile>${project.basedir}/target/jacoco.exec</jacoco.destFile>
+		<fabric8.maven.plugin.version>4.3.0</fabric8.maven.plugin.version>
+		<fabric8.resources.requests.memory>64Mi</fabric8.resources.requests.memory>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.exclusions>**/Main*</sonar.exclusions>
@@ -26,7 +28,7 @@
 		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.coverage.exclusions>**/constant/**/*,**/exceptions/**/*,**/model/**/*,**/domain/**/*,**/repository/**/*,**/Msach*</sonar.coverage.exclusions>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -124,6 +126,28 @@
 	</dependencyManagement>
 
 	<profiles>
+		<profile>
+			<id>openshift</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>fabric8-maven-plugin</artifactId>
+						<version>${fabric8.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>fmp</id>
+								<goals>
+									<goal>resource</goal>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<activation />
+		</profile>
 		<profile>
 			<id>development_reporting</id>
 			<activation>

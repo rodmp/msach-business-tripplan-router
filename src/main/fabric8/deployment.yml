@@ -1,0 +1,65 @@
+metadata:
+  labels:
+    app: msach-business-tripplan-router
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: 'default'
+            - name: JAVA_MAX_MEM_RATIO
+              value: '0'
+            - name: JAVA_TOOL_OPTIONS
+              value:
+                -XX:+UnlockExperimentalVMOptions
+                -XX:+UseCGroupMemoryLimitForHeap
+                -Djava.net.preferIPv4Stack=true
+            - name: TZ
+              value: 'America/Mexico_City'  
+          name: msach-b-business-application
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            - containerPort: 9779
+              name: prometheus
+              protocol: TCP
+            - containerPort: 8778
+              name: jolokia
+              protocol: TCP
+            - containerPort: 8181
+              name: actuator
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8181
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8181
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+          - name: msach-business-tripplan-router-config
+            mountPath: /deployments/config
+      volumes:
+        - name: msach-business-tripplan-router-config
+          configMap:
+            name: msach-b-business-application

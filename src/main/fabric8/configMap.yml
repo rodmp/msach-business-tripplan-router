@@ -1,0 +1,138 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: msach-business-tripplan-router
+data:
+  application.properties: |-
+    #===================================================================#
+    # Propiedades de tomcat                                             #
+    #===================================================================#
+    
+    server.port=8080
+    
+    server.tomcat.accept-count=120
+    server.tomcat.max-connections=360
+    server.tomcat.max-threads=600
+    server.tomcat.min-spare-threads=200
+    
+    #===================================================================#
+    # Propiedades de spring boot                                        #
+    #===================================================================#
+    
+    info.app.name = @project.name@
+    info.app.groupId = @project.groupId@
+    info.app.artifactId = @project.artifactId@
+    info.app.version = @project.version@ 
+    
+    #===================================================================#
+    # Propiedades de spring actuator                                    #
+    #===================================================================# 
+    
+    management.server.port=8181
+    management.endpoints.web.exposure.include=health,info
+    management.endpoint.health.show-details=never
+    
+    #===================================================================#
+    # Propiedades de logueo                                             #
+    #===================================================================#
+    
+    logging.pattern.level='[%X{data}%thread] [%X{X-B3-TraceId:-}] - %5p'
+    logging.pattern.console=%p, %d{'yyyy-MM-dd HH:mm:ss,SSS',America/Mexico_City}, %C{1}:%M:%L, %X{mdc.uuid}, %m%n%ex{3}
+    
+    logging.level.org.springframework.web=DEBUG
+    logging.level.org.springframework.web.servlet.DispatcherServlet=DEBUG
+    logging.level.org.springframework.cloud.sleuth=OFF
+    logging.level.com.meep.tripplan.router=DEBUG
+    
+    feign.client.config.default.loggerLevel=FULL
+    
+    #===================================================================#
+    # Propiedades del API                                               #
+    #===================================================================#
+    
+    api.uri.basePath=/api
+    
+    api.uri.domain=/tripplan/resources
+    
+    api.uri.domain.context.level.version=/public/v1
+    api.uri.domain.context.resource=${api.uri.domain}/difference/resources/retrieve
+    api.uri.domain.context.mapping=${api.uri.domain.context.level.version}${api.uri.domain.context.resource}
+    
+    api.headers.print=true
+    
+    feign.hystrix.enabled=true
+    
+    api.schedule.fixed.rate=30000
+    
+    api.pathVariable.lowerLeftLatLon=38.711046,-9.160096
+    api.pathVariable.upperRightLatLon=38.739429,-9.137115
+    api.pathVariable.companyZoneIds=545,467,473
+    
+    #===================================================================#
+    # Propiedades de swagger                                            #
+    #===================================================================#
+    
+    constants.swagger.basePackage=com.meep.tripplan.router
+    constants.swagger.title=msach-business-tripplan-router
+    constants.swagger.descriptionApi=Servicio que obtiene los servicios nuevos y servicios que ya no estan disponibles
+    constants.swagger.version=1.0.0
+    constants.swagger.nameDeveloper=Meep
+    constants.swagger.contactUrl=https://www.meep.com/
+    constants.swagger.label=swagger-ui.html
+    constants.swagger.resourceLocation=classpath:/META-INF/resources/
+    constants.swagger.webjars=/webjars/**
+    constants.swagger.webjarsLocation=classpath:/META-INF/resources/webjars/
+    constants.swagger.emailDeveloper=mail@meep.com.mx
+    
+    #===================================================================#
+    # Externalizacion de errores y variables                            #
+    #===================================================================#
+    
+    constants.errorResolver.errorCodes.noDataFoundException=
+    constants.errorResolver.errorCodes.unauthorizedException=
+    constants.errorResolver.errorCodes.forbiddenException=
+    constants.errorResolver.errorCodes.badRequestException=
+    constants.errorResolver.errorCodes.noHandlerFoundException=
+    constants.errorResolver.errorCodes.httpRequestMethodNotSupportedException=
+    constants.errorResolver.errorCodes.httpMediaTypeNotAcceptableException=
+    constants.errorResolver.errorCodes.httpMediaTypeNotSupportedException=
+    constants.errorResolver.errorCodes.servletRequestBindingException=
+    constants.errorResolver.errorCodes.httpMessageNotReadableException=
+    constants.errorResolver.errorCodes.methodArgumentNotValidException=
+    constants.errorResolver.errorCodes.constraintViolationException=
+    constants.errorResolver.errorCodes.hystrixRuntimeException=
+    constants.errorResolver.errorCodes.microserviceClientException=
+    constants.errorResolver.errorCodes.externalResourceException=
+    constants.errorResolver.errorCodes.requestTimeoutException=
+    constants.errorResolver.errorCodes.exception=
+    
+    constants.errorResolver.messages.noDataFoundException=No se encontro el dato solicitado
+    constants.errorResolver.messages.unauthorizedException=Falta de credenciales o credenciales invalidas
+    constants.errorResolver.messages.forbiddenException=No estas autorizado para invocar la funcionalidad requerida
+    constants.errorResolver.messages.badRequestException=Request o headers incorrectos en la peticion
+    constants.errorResolver.messages.noHandlerFoundException=No se ecnontro el recurso solicitado
+    constants.errorResolver.messages.requestTimeoutException=El recurso solicitado tardo mas de lo esperado
+    constants.errorResolver.messages.exception=Algo ha salido mal!!!
+    
+    
+    #===================================================================#
+    # Propiedades del cliente redis                                     #
+    #===================================================================#
+    
+    spring.cache.type=redis
+    spring.cache.redis.time-to-live= 300000000
+    spring.redis.host=localhost
+    spring.redis.port=6379
+    
+    #===================================================================#
+    # Propiedades del cliente feign                                     #
+    #===================================================================#
+    
+    constants.feign.name.tripplan=TripplanRouter
+    constants.feign.url.tripplan=https://apidev.meep.me
+    constants.feign.endPoint.tripplan.resource-level-version=/tripplan/api/v1
+    constants.feign.endPoint.tripplan.resource=/routers/lisboa/resources?lowerLeftLatLon={coords1}&upperRightLatLon={coords2}&companyZoneIds={zones}
+    constants.feign.endPoint.tripplan.mapping:${constants.feign.endPoint.tripplan.resource-level-version}${constants.feign.endPoint.tripplan.resource}
+    
+    feign.client.config.tripplan.connectTimeout:15000
+    feign.client.config.tripplan.readTimeout:15000
