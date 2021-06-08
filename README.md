@@ -1,5 +1,6 @@
-msach-business-tripplan-router.
+#msach-business-tripplan-router.
 
+## Description
 Este microservicio tiene 1 APIs que obtiene los recursos nuevos y recursos que no estan disponibles:
 
 1.Hace el consumo de los recursos disponibles en un are por medio del siguiente endpoint:
@@ -19,12 +20,19 @@ Se realizó la implementacion metricas de acceso a recursos externos como mongo 
 - **FindBugs**
 - **Others**
 
+### Versioning
+1.0.0
+
+#### Last modification date:
 07/06/2021 by Rodolfo Miranda
 
+#### 1. Obtiene recursos actuales.
+### Endpoint
 > /api/public/v1/tripplan/resources/difference/resources/retrieve GET
 
 En el body del request se debe de incluir el json resultado del analisis que realiza.
 
+## instrucciones de consumo
 URL :
 
 http://localhost:8080/swagger-ui.html#!/tripplan-resources-controller/getDifferencesResourcesUsingGET
@@ -38,6 +46,7 @@ http://localhost:8080/swagger-ui.html#!/tripplan-resources-controller/getDiffere
   }
 
 ```
+## Built With
 * Maven
 * Spring
 * SpringBoot
@@ -55,11 +64,13 @@ Se necesita tener instalado:
  - Redis
 
 
+## Deployment
     mvn spring boot:run  en Local 
+    mvn fabric8:deploy -Popenshift 
 O desde Spring Tools Suite click derecho sobre el proyecto -> Run As -> Spring Boot App
 
 
-
+### Running JUnit tests
  - Desde pring Tools Suite click derecho sobre el proyecto  > Run As >
    JUnit Test. 
  
@@ -68,11 +79,12 @@ O desde Spring Tools Suite click derecho sobre el proyecto -> Run As -> Spring B
  Esto ejecuta todas las pruebas unitarias del proyectos y genera los reportes en el site y el sonar.
  
 
-
+### Reporting
 Genera el reporte de check-style html y lo guarda en el site.
 
-
+#### site
 Se divide en dos partes:
+
 
  1. Informacion del proyecto.
 
@@ -94,11 +106,12 @@ mvn clean package site sonar:sonar -Pdevelopment_reporting
 
 En las últimas líneas de la salida de consola hay un enlace, cópielo y péguelo en cualquier navegador web para ver el informe.
 
--**Preguntas**
+#-**Preguntas**
 
 - ¿Cómo de escalable es tu solución propuesta? 
 
-	Se puede instalar en un docker, y configurar para kubernetes. Aumentar el número de contenedores o pods.
+	Se puede instalar en un openshift local. 
+	Aumentar el número de contenedores o pods.
 
 - ¿Que problemas a futuro podría presentar? Si has detectado alguno 
 

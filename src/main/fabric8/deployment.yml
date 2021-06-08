@@ -37,8 +37,8 @@ spec:
               path: /actuator/health
               port: 8181
               scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
+            initialDelaySeconds: 120
+            periodSeconds: 120
             timeoutSeconds: 5
           readinessProbe:
             failureThreshold: 3
@@ -46,8 +46,8 @@ spec:
               path: /actuator/health
               port: 8181
               scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
+            initialDelaySeconds: 120
+            periodSeconds: 120
             timeoutSeconds: 5
           resources:
             limits:
@@ -62,4 +62,4 @@ spec:
       volumes:
         - name: msach-business-tripplan-router-config
           configMap:
-            name: msach-b-business-application
+            name: msach-business-tripplan-router
