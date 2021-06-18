@@ -63,8 +63,9 @@ Se necesita tener instalado:
  - lombok
  - Redis
 
-###
-Instalar redis en docker
+### Instalar redis 
+
+En docker
 
 docker run -d -p 6379:6379 redis
 
