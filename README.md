@@ -67,13 +67,13 @@ Se necesita tener instalado:
 
 En docker
 
-docker run -d -p 6379:6379 redis
+	docker run -d -p 6379:6379 redis
 
 Istalación en Ubuntu
 
-$ sudo add-apt-repository ppa:redislabs/redis
-$ sudo apt-get update
-$ sudo apt-get install redis
+	$ sudo add-apt-repository ppa:redislabs/redis
+	$ sudo apt-get update
+	$ sudo apt-get install redis
 
 ## Deployment
     mvn spring boot:run  en Local 
